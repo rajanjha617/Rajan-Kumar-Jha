@@ -1,0 +1,155 @@
+TABLE Cust
+(
+Cust_id varchar(3) NOT NULL PRIMARY KEY,
+Lname varchar(15),
+Fname varchar(15),
+Area varchar(2),
+Phone_no numeric(8)
+);
+INSERT INTO Cust (Cust_id, Lname, Fname, Area, Phone_no)
+VALUES ('A1', 'Bayross', 'Ivan', 'Sa', 123456);
+INSERT INTO Cust (Cust_id, Lname, Fname, Area, Ph one_no)
+VALUES ('A2', 'Saitwal', 'Vandana', 'Mu', 234566);
+INSERT INTO Cust (Cust_id, Lname, Fname, Area, Phone_no)
+VALUES ('A3', 'Jaguste', 'Pramada', 'Da', 456789);
+INSERT INTO Cust (Cust_id, Lname, Fname, Area, Phone_no)
+VALUES ('A4', 'Navindgi', 'Basu', 'Ba', 678912);
+INSERT INTO Cust (Cust_id, Lname, Fname, Area, Phone_no)
+VALUES ('A5', 'Sreedharan', 'Ravi', 'Va', null);
+INSERT INTO Cust (Cust_id, Lname, Fname, Area, Phone_no)
+VALUES ('A6', 'null', 'Rukmini', 'Gh', 789123);
+SELECT * FROM Cust
+CREATE TABLE Movie
+(
+Mv_no numeric(2) NOT NULL PRIMARY KEY,
+Title varchar(25),
+Type_ varchar(10),
+Star varchar(25),
+Price numeric(8,2)
+);
+CREATE TABLE Invoice
+(
+Inv_no varchar(3) NOT NULL PRIMARY KEY,
+Mv_no numeric(2) FOREIGN KEY REFERENCES Movie(Mv_no),
+Cust_id varchar(3) FOREIGN KEY REFERENCES Cust(Cust_id),
+Issue_date date,
+Return_date Date
+);
+SELECT * FROM Movie
+INSERT INTO Movie (Mv_no, Title, Type_, Star, Price)
+VALUES (1, 'Bloody vengeance', 'Action', 'Jackie chan', 180.95);
+INSERT INTO Movie (Mv_no, Title, Type_, Star, Price)
+VALUES (2, 'The firm', 'Thriller', 'Tom cruise', 200);
+INSERT INTO Movie (Mv_no, Title, Type_, Star, Price)
+VALUES (3, 'Pretty woman', 'Romance', 'Richard gere', 150.55);
+INSERT INTO Movie (Mv_no, Title, Type_, Star, Price)
+VALUES (4, 'Home alone', 'Comedy', 'Macaulay Douglas', 100);
+INSERT INTO Movie (Mv_no, Title, Type_, Star, Price)
+VALUES (5, 'The fugitive', 'Thriller', 'Harisson ford', 200);
+INSERT INTO Movie (Mv_no, Title, Type_, Star, Price)
+VALUES (6, 'Coma', 'Suspense', 'Michael Douglas', 100);
+INSERT INTO Movie (Mv_no, Title, Type_, Star, Price)
+VALUES (7, 'Dracula', 'Horror', 'Gray olaman', 150.25);
+INSERT INTO Movie (Mv_no, Title, Type_, Star, Price)
+VALUES (8, 'Quick change', 'Comedy', 'Bill muray', 100);
+INSERT INTO Movie (Mv_no, Title, Type_, Star, Price)
+VALUES (9, 'Gone with the wild', 'Drama', 'Clarke gable', 200);
+INSERT INTO Movie (Mv_no, Title, Type_, Star, Price)
+VALUES (10, 'Carry on doctor', 'Comedy', 'Leslie Phillips', 100);
+SELECT * FROM Invoice
+INSERT INTO Invoice (Inv_no, Mv_no, Cust_id, Issue_date, Return_date)
+VALUES ('I1', 4, 'A1', '1993-07-25', '1993-07-25');
+INSERT INTO Invoice (Inv_no, Mv_no, Cust_id, Issue_date, Return_date)
+VALUES ('I2', 3, 'A2', '1993-08-12', '1993-08-15');
+INSERT INTO Invoice (Inv_no, Mv_no, Cust_id, Issue_date, Return_date)
+VALUES ('I3', 1, 'A2', '1993-08-15', '1993-08-18');
+INSERT INTO Invoice (Inv_no, Mv_no, Cust_id, Issue_date, Return_date)
+VALUES ('I4', 6, 'A3', '1993-09-10', '1993-09-13');
+INSERT INTO Invoice (Inv_no, Mv_no, Cust_id, Issue_date, Return_date)
+VALUES ('I5', 7, 'A4', '1993-08-05', '1993-08-08');
+INSERT INTO Invoice (Inv_no, Mv_no, Cust_id, Issue_date, Return_date)
+VALUES ('I6', 2, 'A6', '1993-10-18', '1993-10-21');
+INSERT INTO Invoice (Inv_no, Mv_no, Cust_id, Issue_date, Return_date)
+VALUES ('I7', 9, 'A5', '1993-07-07', '1993-07-10');
+INSERT INTO Invoice (Inv_no, Mv_no, Cust_id, Issue_date, Return_date)
+VALUES('I8', 9, 'A1', '1993-08-11', '1993-08-14');
+INSERT INTO Invoice (Inv_no, Mv_no, Cust_id, Issue_date, Return_date)
+VALUES ('I9', 5, 'A3', '1993-07-06', '1993-07-09');
+INSERT INTO Invoice (Inv_no, Mv_no, Cust_id, Issue_date, Return_date)
+VALUES ('I10', 8, 'A6', '1993-09-03', '1993-09-06');
+SELECT * FROM Invoice
+-----------------------------------------------------------------------------------------------------
+SELECT Lname, Fname FROM Cust;
+SELECT * FROM Cust;
+SELECT Fname, Area FROM Cust;
+SELECT Type_ FROM Movie;
+SELECT * FROM Cust WHERE Fname LIKE '%A';
+SELECT * FROM Cust WHERE Lname LIKE 'S%' or Lname LIKE 'J%';
+SELECT * FROM CUST WHERE Area ='da' or Area ='mu' or Area ='gh';
+SELECT * FROM Cust WHERE Phone_no > 555000;
+SELECT * FROM Invoice WHERE Issue_date between '1993-08-01' and '1993-08-31';
+SELECT * FROM Movie WHERE Type_='Action' or Type_='Comedy';
+SELECT * FROM Movie WHERE Price BETWEEN 150 and 200;
+/* 13 */
+Select * from movie where price > 150 ;
+Alter table movie add new_cost numeric(15);
+select * from movie update movie set new_cost = price*15 ;
+Select * from movie where price > 150 ;
+/* 14 */
+SP_rename 'movie.new_cost','new_price', 'column' ;
+select * from movie ;
+/* 15 */
+select title from movie order by title ASC ;
+/* 16 */
+select title, type_ from movie where type_ != 'horror' ;
+/*17 */
+select sqrt(price) from movie ;
+/*18*/
+update movie set price = 150 where Mv_no = 4 ;
+/* 19 */
+select count(cust_id) from cust ;
+/* 20 */
+select max(price) AS max_price , min(price) as min_price from movie ;
+/*21*/
+select count(title) from movie where price >= 150;
+/*22*/
+select concat ' The invoice of customer id' || cust_id ||' is '||inv_no || 'and movie no. is' || mv_no from invoice ;
+/*23*/
+Select type_, Avg(price), count(type_) from movie group by type_ ;
+/*24*/
+Select type_, count(type_) from movie group by type_ ;
+/*25*/
+Select type_, count(type_) from movie where (type_ = 'comedy' or type_='thriller') group by type_ ;
+/*26*/
+Select type_, Avg(price), count(type_) from movie where (type_ = 'comedy' or type_='thriller') and (price >= 150) group by type_ ;
+/*27*/
+SELECT Mv_no from cust inner join invoice on cust.cust_id = invoice.cust_id where fname = 'Ivan' ;
+/* 28 */
+SELECT title, cust_id, movie.mv_no from movie inner join invoice on movie.mv_no = invoice.mv_no ;
+/* 29 */
+SELECT title, type_ from invoice inner join movie on movie.mv_no = invoice.Mv_no
+inner join cust on cust.cust_id = invoice.cust_id where fname = 'vandana' ;
+/* 30 */
+SELECT "The movie taken by" fname, lname "is" title from invoice inner join movie on movie.mv_no = invoice.Mv_no
+inner join cust on cust.cust_id = invoice.cust_id where movie.mv_no > 3 ;
+/* 31 */
+Select fname, lname, area from cust inner join invoice on cust.cust_id = invoice.cust_id where Invoice.Inv_no = 'I10' ;
+/* 32 */
+select fname, lname, phone_no from cust inner join invoice on cust.cust_id = invoice.cust_id
+where invoice.issue_date < '1993-08-01' ;
+/* 33 */
+SELECT cust_id from movie inner join invoice on movie.mv_no = invoice.mv_no
+where movie.star = 'Tom cruise' ;
+/* 34 */
+select Inv_no,day(issue_date) from invoice ;
+/* 35 */
+select month(Issue_date) as Monthwise from invoice order by month(issue_date) ;
+-- 36 --
+select format(issue_date, 'dd/MM/yy') as date from invoice ;
+-- 37 --
+select getdate()+15;
+--38 --
+select datediff(day, issue_date, return_date) from invoice ;
+-- 39 --
+update movie set new_price = 250 where title = 'gone with the wild' ;
+select * from movie ;
